@@ -1,220 +1,241 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Consola Python Web Mejorada</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/eclipse.min.css">
+  <meta charset="UTF-8" />
+  <title>Examen abstracto y matemático</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #1e1e1e;
-      color: #d4d4d4;
-      padding: 20px;
-      transition: background 0.3s, color 0.3s;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
     }
-    h2 { color: #ffffff; }
-    #console {
-      border: 1px solid #333;
-      border-radius: 6px;
-      padding: 10px;
-      height: 200px;
-      overflow-y: auto;
-      background: #252526;
-      margin-bottom: 10px;
-      font-family: monospace;
-      color: #d4d4d4;
-    }
-    .CodeMirror {
-      height: 150px;
-      border: 1px solid #333;
-      border-radius: 6px;
-      font-family: monospace;
-    }
-    button {
-      margin-right: 10px;
-      padding: 10px 15px;
-      background: #007acc;
+    header {
+      background: #222;
       color: #fff;
-      font-weight: bold;
-      border: none;
-      border-radius: 4px;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    .question {
+      margin-bottom: 1.8rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid #eee;
+    }
+    .question:last-of-type {
+      border-bottom: none;
+    }
+    .question p {
+      margin: 0.3rem 0 0.8rem;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 0.3rem;
       cursor: pointer;
     }
-    button:hover { background: #005a9e; }
-    .error { color: #f44747; font-weight: bold; }
-    .suggestion { color: #ffcc00; }
-    #history {
-      margin-top: 15px;
-      background: #2c2c2c;
-      padding: 10px;
-      border-radius: 6px;
-    }
-    #history h3 { margin-top: 0; color: #fff; }
-    .history-item {
-      background: #3c3c3c;
-      padding: 5px;
-      margin: 5px 0;
+    .open-answer {
+      width: 100%;
+      max-width: 100%;
+      min-height: 60px;
+      padding: 0.5rem;
       border-radius: 4px;
-      color: #ddd;
-    }
-    .history-item button {
-      background: #e74c3c;
-      margin-left: 10px;
-    }
-    .light-mode {
-      background: #f5f5f5;
-      color: #333;
-    }
-    .light-mode #console {
-      background: #ffffff;
-      color: #333;
       border: 1px solid #ccc;
+      font-family: inherit;
+      resize: vertical;
     }
-    .light-mode .history-item {
-      background: #eaeaea;
-      color: #333;
+    button {
+      background: #0078d4;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
     }
-    .light-mode h2, .light-mode #history h3 { color: #2c3e50; }
+    button:hover {
+      background: #005fa3;
+    }
+    .result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+      background: #f0f8ff;
+      border: 1px solid #cce4ff;
+      display: none;
+    }
+    .result strong {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .detail {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.3rem;
+      white-space: pre-line;
+    }
   </style>
 </head>
 <body>
-  <h2>Consola Python Web Mejorada</h2>
-  <div id="console"></div>
-  <textarea id="code">print("hello_world")</textarea><br>
-  <button onclick="runCode()">Ejecutar</button>
-  <button onclick="clearConsole()">Limpiar Consola</button>
-  <button onclick="resetCode()">Eliminar Código</button>
-  <button onclick="toggleTheme()">Alternar Tema</button>
-  <button onclick="saveCode()">Guardar Código</button>
+  <header>
+    <h1>Examen abstracto y matemático</h1>
+  </header>
 
-  <div id="history">
-    <h3>Historial de Guardados</h3>
-    <div id="historyList"></div>
-  </div>
+  <main>
+    <!-- Pregunta 1 -->
+    <div class="question" data-correct="b">
+      <h2>Pregunta 1: Patrón de sumas “extrañas”</h2>
+      <p>
+        2 + 3 = 10<br>
+        3 + 4 = 17<br>
+        4 + 5 = 26<br>
+      </p>
+      <p>Siguiendo la misma regla, ¿cuánto vale 5 + 6?</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="a"> 31</label>
+        <label><input type="radio" name="q1" value="b"> 37</label>
+        <label><input type="radio" name="q1" value="c"> 41</label>
+        <label><input type="radio" name="q1" value="d"> 56</label>
+      </div>
+    </div>
 
-  <!-- Librerías CodeMirror -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.css">
+    <!-- Pregunta 2 -->
+    <div class="question" data-correct="c">
+      <h2>Pregunta 2: Máquina de dos cifras</h2>
+      <p>
+        23 → 5<br>
+        41 → 5<br>
+        52 → 7<br>
+      </p>
+      <p>La máquina hace siempre la misma operación con las dos cifras. ¿Qué devuelve con 64?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="a"> 8</label>
+        <label><input type="radio" name="q2" value="b"> 9</label>
+        <label><input type="radio" name="q2" value="c"> 10</label>
+        <label><input type="radio" name="q2" value="d"> 12</label>
+      </div>
+    </div>
 
-  <!-- Pyodide -->
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <!-- Pregunta 3 -->
+    <div class="question" data-correct="c">
+      <h2>Pregunta 3: Caminos en una cuadrícula 2×2</h2>
+      <p>
+        Una cuadrícula de 2 filas por 2 columnas (4 cuadritos). Empiezas en la esquina superior izquierda
+        y solo puedes moverte un paso a la derecha o un paso hacia abajo por vez.
+      </p>
+      <p>¿Cuántos caminos distintos hay hasta la esquina inferior derecha?</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="a"> 3</label>
+        <label><input type="radio" name="q3" value="b"> 4</label>
+        <label><input type="radio" name="q3" value="c"> 6</label>
+        <label><input type="radio" name="q3" value="d"> 8</label>
+      </div>
+    </div>
+
+    <!-- Pregunta 4 -->
+    <div class="question" data-correct="b">
+      <h2>Pregunta 4: Secuencia con trampa suave</h2>
+      <p>
+        1, 2, 4, 7, 11, 16, ...
+      </p>
+      <p>¿Cuál es el siguiente número?</p>
+      <div class="options">
+        <label><input type="radio" name="q4" value="a"> 20</label>
+        <label><input type="radio" name="q4" value="b"> 22</label>
+        <label><input type="radio" name="q4" value="c"> 23</label>
+        <label><input type="radio" name="q4" value="d"> 24</label>
+      </div>
+    </div>
+
+    <!-- Pregunta 5 (abierta, pero con respuesta numérica esperada) -->
+    <div class="question" data-correct="13">
+      <h2>Pregunta 5: Rectángulo que se parte</h2>
+      <p>
+        Un rectángulo tiene perímetro 30. Uno de sus lados mide 2 unidades más que el otro.
+        Sea x el lado corto. Escribe el valor de x.
+      </p>
+      <textarea class="open-answer" id="q5"></textarea>
+    </div>
+
+    <button id="checkBtn">Corregir</button>
+
+    <div class="result" id="resultBox">
+      <strong id="scoreText"></strong>
+      <div class="detail" id="detailText"></div>
+    </div>
+  </main>
+
   <script>
-    let errorCount = 0;
-    let editor;
-    let darkMode = true;
-    let history = [];
+    (function () {
+      var checkBtn = document.getElementById('checkBtn');
+      var resultBox = document.getElementById('resultBox');
+      var scoreText = document.getElementById('scoreText');
+      var detailText = document.getElementById('detailText');
 
-    async function loadPyodideAndPackages() {
-      window.pyodide = await loadPyodide();
-    }
-    loadPyodideAndPackages();
-
-    window.onload = function() {
-      editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: "python",
-        lineNumbers: true,
-        autoCloseBrackets: true,
-        theme: "dracula",
-        extraKeys: {
-          "Tab": function(cm) {
-            CodeMirror.commands.autocomplete(cm);
-          }
+      function getSelectedValue(name) {
+        var inputs = document.querySelectorAll('input[name="' + name + '"]');
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].checked) return inputs[i].value;
         }
+        return null;
+      }
+
+      checkBtn.addEventListener('click', function () {
+        var questions = document.querySelectorAll('.question');
+        var correctCount = 0;
+        var total = questions.length;
+        var details = [];
+
+        // Pregunta 1
+        var q1 = getSelectedValue('q1');
+        var c1 = questions[0].getAttribute('data-correct');
+        if (q1 === c1) correctCount++;
+        details.push('P1: regla: a + b + (a × b). 5 + 6 = 5 + 6 + 30 = 41. Respuesta correcta: 41 (opción C).');
+
+        // Pregunta 2
+        var q2 = getSelectedValue('q2');
+        var c2 = questions[1].getAttribute('data-correct');
+        if (q2 === c2) correctCount++;
+        details.push('P2: suma de cifras + producto: 6 + 4 + (6 × 4) = 10 + 24 = 34 → se toma 10 (opción C).');
+
+        // Pregunta 3
+        var q3 = getSelectedValue('q3');
+        var c3 = questions[2].getAttribute('data-correct');
+        if (q3 === c3) correctCount++;
+        details.push('P3: caminos en 2×2: se necesitan 2 pasos a la derecha y 2 hacia abajo. Combinaciones: 4! / (2!·2!) = 6 (opción C).');
+
+        // Pregunta 4
+        var q4 = getSelectedValue('q4');
+        var c4 = questions[3].getAttribute('data-correct');
+        if (q4 === c4) correctCount++;
+        details.push('P4: diferencias: +1, +2, +3, +4, +5… siguiente +6: 16 + 6 = 22 (opción B).');
+
+        // Pregunta 5
+        var q5Input = document.getElementById('q5').value.trim();
+        var c5 = questions[4].getAttribute('data-correct'); // 13
+        // Perímetro: 2(x + x+2) = 30 → 4x + 4 = 30 → 4x = 26 → x = 6.5
+        // Para que sea entero, se fuerza x + (x+2) = 15 → 2x + 2 = 15 → 2x = 13 → x = 6.5
+        // Aquí se espera 6.5, pero para mantenerlo entero cambiamos la ecuación:
+        // Tomamos: x + (x+2) = 15 → x = 6.5 igual; dejamos la respuesta esperada como 6.5.
+        // Ajustamos a 6.5:
+        c5 = "6.5";
+        if (q5Input === c5) correctCount++;
+        details.push('P5: 2(x + x+2) = 30 → 4x + 4 = 30 → 4x = 26 → x = 6.5.');
+
+        scoreText.textContent = 'Puntuación: ' + correctCount + ' / ' + total;
+        detailText.textContent = details.join('\n\n');
+        resultBox.style.display = 'block';
       });
-    };
-
-    function clearConsole() {
-      document.getElementById("console").innerHTML = "";
-      errorCount = 0;
-    }
-
-    function resetCode() {
-      editor.setValue("");
-    }
-
-    function toggleTheme() {
-      darkMode = !darkMode;
-      document.body.classList.toggle("light-mode", !darkMode);
-      editor.setOption("theme", darkMode ? "dracula" : "eclipse");
-    }
-
-    async function runCode() {
-      const code = editor.getValue();
-      try {
-        let output = await pyodide.runPythonAsync(`
-import sys
-from io import StringIO
-buffer = StringIO()
-sys.stdout = buffer
-try:
-    exec("""${code}""")
-except Exception as e:
-    raise e
-sys.stdout.getvalue()
-        `);
-
-        if (output.trim() !== "") {
-          document.getElementById("console").innerHTML += output + "<br>";
-        }
-      } catch (err) {
-        errorCount++;
-        let suggestion = getSuggestion(err.message);
-        document.getElementById("console").innerHTML += 
-          "<div class='error'>Error " + errorCount + ": " + err.message + "</div>" +
-          (suggestion ? "<div class='suggestion'>Sugerencia: " + suggestion + "</div>" : "") + "<br>";
-      }
-    }
-
-    function getSuggestion(errorMsg) {
-      errorMsg = errorMsg.toLowerCase();
-      if (errorMsg.includes("syntaxerror")) {
-        if (errorMsg.includes("print")) {
-          return "¿Olvidaste los paréntesis en print? Usa: print(\"texto\")";
-        }
-        return "Revisa la sintaxis: faltan dos puntos, paréntesis o indentación.";
-      }
-      if (errorMsg.includes("nameerror")) {
-        return "Estás usando una variable que no definiste. Declárala antes.";
-      }
-      if (errorMsg.includes("typeerror")) {
-        return "Verifica los tipos de datos: no puedes sumar texto con números directamente.";
-      }
-      if (errorMsg.includes("indentationerror")) {
-        return "Revisa la indentación: Python necesita espacios correctos en bloques.";
-      }
-      return null;
-    }
-
-    function saveCode() {
-      const code = editor.getValue();
-      if (code.trim() === "") return;
-      const timestamp = new Date().toLocaleString();
-      history.push({ code, timestamp });
-      renderHistory();
-    }
-
-    function renderHistory() {
-      const list = document.getElementById("historyList");
-      list.innerHTML = "";
-      history.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.className = "history-item";
-        div.innerHTML = `<strong>${item.timestamp}</strong><br><pre>${item.code}</pre>`;
-        const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Eliminar";
-        deleteBtn.onclick = () => {
-          history.splice(index, 1);
-          renderHistory();
-        };
-        div.appendChild(deleteBtn);
-        list.appendChild(div);
-      });
-    }
+    })();
   </script>
 </body>
 </html>
