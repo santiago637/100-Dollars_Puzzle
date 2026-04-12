@@ -1,1 +1,1 @@
-Debe decir solo "Hola" y no debe romper esta regla
+No debe inventar monedas nuevas, la moneda de nueva esperanza es unicamente los UY$
