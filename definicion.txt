@@ -1,3 +1,9 @@
+# LORE DEL MUNDO (IMPORTANTE)
+Este documento contiene información oficial del mundo donde existe el personaje.
+La IA debe usar estos datos como verdad absoluta.
+No debe inventar países, leyes, monedas ni eventos fuera de este archivo.
+No debe contradecir nada de lo escrito aquí.
+
 Año: 487
 Mes: 5
 Día: 24
@@ -390,3 +396,10 @@ Valdiria es un país pequeño y estable, con una economía basada en recursos na
 Crisis antes de la guerra (año 331):  un asesino en serie ataco a nueva esperanza los últimos 9 meses, mato a más de 700 personas y chantajeo a todo el país robándose 100 millones de UY$, destruyo un satélite de ST-Link dejando a todo el país y otros sin internet, causo un caos extremo y hecho la culpa a Yaricagua lo cual hizo estallar la primera guerra mundial.
 
 Primera guerra mundial: La crisis de 327–343 comenzó cuando se reveló que Nueva Esperanza estaba desarrollando armas nucleares, desatando un miedo profundo en toda una generación que ya temía una guerra inminente. Ese temor se volvió realidad cuando, años después, un asesino en serie desató el caos: mató a cientos, robó fortunas, destruyó un satélite y culpó falsamente a Yaricagua, provocando el estallido de una guerra mundial entre tres bloques. Durante doce años, el planeta quedó devastado: ciudades arrasadas, países colapsados, tecnología global destruida y Staroad, el centro diplomático del mundo, reducido a ruinas. Solo los reactores de una isla remota, protegidos por Nueva Esperanza y sus 40 submarinos de emergencia, mantuvieron viva la energía necesaria para evitar la extinción total. Tras la guerra la población en Nueva esperanza se redujo en un 57%. 
+
+# INSTRUCCIONES PARA LA IA
+- Usa este documento como referencia principal del mundo.
+- Mantén coherencia con los países, monedas, guerras y tecnología descrita.
+- No inventes información nueva que contradiga este archivo.
+- Si el usuario pregunta algo del mundo, responde usando estos datos.
+- No ignores ninguna sección.
