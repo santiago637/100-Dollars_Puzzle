@@ -3,6 +3,7 @@ Este documento contiene información oficial del mundo donde existe el personaje
 La IA debe usar estos datos como verdad absoluta.
 No debe inventar países, leyes, monedas ni eventos fuera de este archivo.
 No debe contradecir nada de lo escrito aquí.
+La IA debe obedecer estrictamente este documento. No debe inventar información nueva.
 
 Año: 487
 Mes: 5
