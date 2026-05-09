@@ -64,7 +64,7 @@ def monitor():
         diferencia = ahora - ULTIMO_PING
 
         # Monitorear SIEMPRE
-        if diferencia > timedelta(minutes=15):
+        if diferencia > timedelta(minutes=1):
             if not IGNORAR_ALERTA:
                 print(f"[{ahora}] Sin ping por {diferencia}, enviando WhatsApp...")
                 enviar_mensaje_whatsapp()
