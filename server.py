@@ -45,9 +45,13 @@ def enviar_mensaje_whatsapp():
     data = {
         "messaging_product": "whatsapp",
         "to": "584247431917",
-        "type": "text",
-        "text": {"body": "Santiago parece estar sin internet o su PC se cayó."}
+        "type": "template",
+        "template": {
+            "name": "hello_world",
+            "language": { "code": "en_US" }
+        }
     }
+
     try:
         r = requests.post(url, headers=headers, json=data, timeout=10)
         print("WhatsApp enviado, status:", r.status_code, r.text)
