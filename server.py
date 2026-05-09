@@ -37,9 +37,9 @@ def shutdown():
 # 3. Enviar WhatsApp
 # -----------------------------
 def enviar_mensaje_whatsapp():
-    url = "https://graph.facebook.com/v17.0/584121391190/messages"
+    url = "https://graph.facebook.com/v25.0/1093054933893080/messages"
     headers = {
-        "Authorization": "Bearer TU_TOKEN_DE_ACCESO",
+        "Authorization": "Bearer EAAQocp84KbUBRaL032tpnV4FSRygbleMiAf1iXtGAZBXgguuZCDQ620uR0wLHndAUlsfhGlEVXotRBreVLgOmItTzNA8PGYZBImmEtbVJ8ZBGxDZAMuudZAZCqe9uR7noB8eafTZCffc4ZAgRsDQWQZAJLG6KEZBohkyYA6t9uAInXc2ZCZCO816ceiik2dLFtZBT86POuCvjmASMfcYfOAXiqAJclZAdiHqSTgoqBp92v10MlH1mMNMLJL7cKvvWqT41lIvE8rvyLUWiB3RsKoeLPQMrwANmFL1QZDZD",
         "Content-Type": "application/json"
     }
     data = {
