@@ -68,7 +68,7 @@ def monitor():
             if not IGNORAR_ALERTA:
                 print(f"[{ahora}] Sin ping por {diferencia}, enviando WhatsApp...")
                 enviar_mensaje_whatsapp()
-                time.sleep(1200)  # evitar spam
+                time.sleep(120)  # evitar spam
             else:
                 print(f"[{ahora}] Sin ping pero IGNORAR_ALERTA=True, no se envía WhatsApp")
 
