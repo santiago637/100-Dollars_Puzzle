@@ -1,0 +1,5 @@
+[build]
+builder = "Docker"
+
+[deploy]
+restartPolicyType = "ON_FAILURE"
