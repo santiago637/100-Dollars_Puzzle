@@ -72,7 +72,7 @@ def monitor():
             else:
                 print(f"[{ahora}] Sin ping pero IGNORAR_ALERTA=True, no se envía WhatsApp")
 
-        time.sleep(600)  # revisar cada 10 minutos
+        time.sleep(80)  # revisar cada 10 minutos
 
 # Lanzar monitor en hilo aparte
 threading.Thread(target=monitor, daemon=True).start()
