@@ -61,22 +61,18 @@ def monitor():
     global ULTIMO_PING, IGNORAR_ALERTA
     while True:
         ahora = datetime.now()
-        hora = ahora.hour
+        diferencia = ahora - ULTIMO_PING
 
-        # Solo monitorear entre 2 pm y 10 pm
-        if 14 <= hora < 22:
-            diferencia = ahora - ULTIMO_PING
+        # Monitorear SIEMPRE
+        if diferencia > timedelta(minutes=15):
+            if not IGNORAR_ALERTA:
+                print(f"[{ahora}] Sin ping por {diferencia}, enviando WhatsApp...")
+                enviar_mensaje_whatsapp()
+                time.sleep(1200)  # evitar spam
+            else:
+                print(f"[{ahora}] Sin ping pero IGNORAR_ALERTA=True, no se envía WhatsApp")
 
-            # Si han pasado más de 15 minutos sin ping
-            if diferencia > timedelta(minutes=15):
-                if not IGNORAR_ALERTA:
-                    print(f"[{ahora}] Sin ping por {diferencia}, enviando WhatsApp...")
-                    enviar_mensaje_whatsapp()
-                    # Para no spamear, esperar 20 minutos antes de volver a alertar
-                    time.sleep(1200)
-                else:
-                    print(f"[{ahora}] Sin ping pero IGNORAR_ALERTA=True, no se envía WhatsApp")
-        time.sleep(600)  # Revisar cada 10 minutos
+        time.sleep(600)  # revisar cada 10 minutos
 
 # Lanzar monitor en hilo aparte
 threading.Thread(target=monitor, daemon=True).start()
