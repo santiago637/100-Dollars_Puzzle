@@ -33,6 +33,15 @@ def shutdown():
     print(f"[{ULTIMO_PING}] PC apagándose, ignorar alerta")
     return "OK", 200
 
+@app.route("/boot")
+def boot():
+    global ULTIMO_PING, IGNORAR_ALERTA
+    ULTIMO_PING = datetime.now()
+    IGNORAR_ALERTA = False
+    print(f"[{ULTIMO_PING}] PC encendida, alertas reactivadas")
+    return "OK", 200
+
+
 # -----------------------------
 # 3. Enviar WhatsApp
 # -----------------------------
@@ -65,18 +74,21 @@ def monitor():
     global ULTIMO_PING, IGNORAR_ALERTA
     while True:
         ahora = datetime.now()
+        hora = ahora.hour
+        dia = ahora.weekday()  # 0 = lunes, 6 = domingo
         diferencia = ahora - ULTIMO_PING
 
-        # Monitorear SIEMPRE
-        if diferencia > timedelta(minutes=1):
-            if not IGNORAR_ALERTA:
-                print(f"[{ahora}] Sin ping por {diferencia}, enviando WhatsApp...")
-                enviar_mensaje_whatsapp()
-                time.sleep(120)  # evitar spam
-            else:
-                print(f"[{ahora}] Sin ping pero IGNORAR_ALERTA=True, no se envía WhatsApp")
+        # Monitorear SOLO lunes-jueves y SOLO entre 2 pm y 10 pm
+        if 0 <= dia <= 3 and 14 <= hora < 22:
+            if diferencia > timedelta(minutes=1):
+                if not IGNORAR_ALERTA:
+                    print(f"[{ahora}] Sin ping por {diferencia}, enviando WhatsApp...")
+                    enviar_mensaje_whatsapp()
+                    time.sleep(1200)  # evitar spam
+                else:
+                    print(f"[{ahora}] Sin ping pero IGNORAR_ALERTA=True, no se envía WhatsApp")
 
-        time.sleep(80)  # revisar cada 10 minutos
+        time.sleep(600)  # revisar cada 10 minutos
 
 # Lanzar monitor en hilo aparte
 threading.Thread(target=monitor, daemon=True).start()
